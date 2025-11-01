@@ -1,0 +1,12 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Hotel Management App,com.example.hotel.config,AppBootstrap,37,0,0,0,11,0,2,0,2,0
+Hotel Management App,com.example.hotel.dao,GuestDao,69,0,2,0,16,0,4,0,3,0
+Hotel Management App,com.example.hotel.dao,Db,3,12,0,0,1,4,1,2,1,2
+Hotel Management App,com.example.hotel.dao,RoomDao,79,0,2,0,22,0,4,0,3,0
+Hotel Management App,com.example.hotel.dao,BookingDao,87,0,2,0,27,0,4,0,3,0
+Hotel Management App,com.example.hotel.web,GuestServlet,38,0,0,0,9,0,3,0,3,0
+Hotel Management App,com.example.hotel.web,BookingServlet,76,0,0,0,16,0,3,0,3,0
+Hotel Management App,com.example.hotel.web,RoomServlet,48,0,0,0,12,0,3,0,3,0
+Hotel Management App,com.example.hotel.model,Booking,33,0,0,0,12,0,6,0,6,0
+Hotel Management App,com.example.hotel.model,Room,37,0,0,0,13,0,7,0,7,0
+Hotel Management App,com.example.hotel.model,Guest,21,0,0,0,8,0,4,0,4,0

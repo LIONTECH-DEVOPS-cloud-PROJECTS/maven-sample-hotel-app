@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BookingServlet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Hotel Management App</a> &gt; <a href="index.source.html" class="el_package">com.example.hotel.web</a> &gt; <span class="el_source">BookingServlet.java</span></div><h1>BookingServlet.java</h1><pre class="source lang-java linenums">package com.example.hotel.web;
+
+import com.example.hotel.dao.BookingDao;
+import com.example.hotel.dao.RoomDao;
+import com.example.hotel.dao.GuestDao;
+import com.example.hotel.model.Booking;
+import com.example.hotel.model.Room;
+import com.example.hotel.model.Guest;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.*;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
+
+<span class="nc" id="L16">public class BookingServlet extends HttpServlet {</span>
+<span class="nc" id="L17">    private final BookingDao bookingDao = new BookingDao();</span>
+<span class="nc" id="L18">    private final RoomDao roomDao = new RoomDao();</span>
+<span class="nc" id="L19">    private final GuestDao guestDao = new GuestDao();</span>
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+<span class="nc" id="L23">        req.setAttribute(&quot;bookings&quot;, bookingDao.findAll());</span>
+<span class="nc" id="L24">        req.setAttribute(&quot;rooms&quot;, roomDao.findAll());</span>
+<span class="nc" id="L25">        req.setAttribute(&quot;guests&quot;, guestDao.findAll());</span>
+<span class="nc" id="L26">        req.getRequestDispatcher(&quot;/WEB-INF/jsp/bookings.jsp&quot;).forward(req, resp);</span>
+<span class="nc" id="L27">    }</span>
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+<span class="nc" id="L31">        int roomId = Integer.parseInt(req.getParameter(&quot;roomId&quot;));</span>
+<span class="nc" id="L32">        int guestId = Integer.parseInt(req.getParameter(&quot;guestId&quot;));</span>
+<span class="nc" id="L33">        LocalDate checkIn = LocalDate.parse(req.getParameter(&quot;checkIn&quot;));</span>
+<span class="nc" id="L34">        LocalDate checkOut = LocalDate.parse(req.getParameter(&quot;checkOut&quot;));</span>
+<span class="nc" id="L35">        bookingDao.create(roomId, guestId, checkIn, checkOut);</span>
+<span class="nc" id="L36">        resp.sendRedirect(req.getContextPath() + &quot;/bookings&quot;);</span>
+<span class="nc" id="L37">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

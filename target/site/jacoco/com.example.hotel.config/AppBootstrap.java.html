@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AppBootstrap.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Hotel Management App</a> &gt; <a href="index.source.html" class="el_package">com.example.hotel.config</a> &gt; <span class="el_source">AppBootstrap.java</span></div><h1>AppBootstrap.java</h1><pre class="source lang-java linenums">package com.example.hotel.config;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
+import java.sql.Connection;
+import java.sql.Statement;
+import com.example.hotel.dao.Db;
+
+@WebListener
+<span class="nc" id="L11">public class AppBootstrap implements ServletContextListener {</span>
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+<span class="nc" id="L14">        try (Connection c = Db.get(); Statement st = c.createStatement()) {</span>
+<span class="nc" id="L15">            st.execute(&quot;CREATE TABLE IF NOT EXISTS rooms (id IDENTITY PRIMARY KEY, number VARCHAR(10), type VARCHAR(30), price_per_night DOUBLE, available BOOLEAN)&quot;);</span>
+<span class="nc" id="L16">            st.execute(&quot;CREATE TABLE IF NOT EXISTS guests (id IDENTITY PRIMARY KEY, name VARCHAR(100), email VARCHAR(100))&quot;);</span>
+<span class="nc" id="L17">            st.execute(&quot;CREATE TABLE IF NOT EXISTS bookings (id IDENTITY PRIMARY KEY, room_id INT, guest_id INT, check_in DATE, check_out DATE)&quot;);</span>
+
+            // Seed data (plain Java 11 strings)
+<span class="nc" id="L20">            st.execute(&quot;INSERT INTO rooms(number, type, price_per_night, available) VALUES ('101','Single',79.99,true),('102','Double',99.99,true),('201','Suite',149.99,true)&quot;);</span>
+<span class="nc" id="L21">            st.execute(&quot;INSERT INTO guests(name, email) VALUES ('Alice Smith','alice@example.com'),('Bob Jones','bob@example.com')&quot;);</span>
+<span class="nc" id="L22">        } catch (Exception e) {</span>
+<span class="nc" id="L23">            throw new RuntimeException(&quot;Failed to initialize database&quot;, e);</span>
+<span class="nc" id="L24">        }</span>
+<span class="nc" id="L25">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

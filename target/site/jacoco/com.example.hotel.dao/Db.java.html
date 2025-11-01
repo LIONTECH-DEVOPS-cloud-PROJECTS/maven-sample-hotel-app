@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Db.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Hotel Management App</a> &gt; <a href="index.source.html" class="el_package">com.example.hotel.dao</a> &gt; <span class="el_source">Db.java</span></div><h1>Db.java</h1><pre class="source lang-java linenums">package com.example.hotel.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+<span class="nc" id="L7">public class Db {</span>
+<span class="fc" id="L8">    private static String url = &quot;jdbc:h2:mem:hotel;DB_CLOSE_DELAY=-1&quot;;</span>
+<span class="fc" id="L9">    private static String user = &quot;sa&quot;;</span>
+<span class="fc" id="L10">    private static String pass = &quot;&quot;;</span>
+
+    public static Connection get() throws SQLException {
+<span class="fc" id="L13">        return DriverManager.getConnection(url, user, pass);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
